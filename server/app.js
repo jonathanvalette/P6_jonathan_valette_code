@@ -8,6 +8,8 @@ const helmet = require('helmet');
 require('dotenv').config();
 const session = require('express-session');
 
+const sauceRoutes = require('./routes/sauce');
+const userRoutes = require('./routes/user');
 
 // Connexion à la base de données
 mongoose.connect(process.env.MONGODB_PATH,
@@ -41,7 +43,16 @@ const accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'),
 app.use(morgan('combined', { stream: accessLogStream }));
 // Sécurise les headers
 app.use(helmet());
-
+// // Utilisation de la session pour stocker de manière persistante le JWT coté front
+const sessionConfig = {
+  secret: process.env.COOKIE_KEY,
+  resave: false,
+  saveUninitialized: false,
+  cookie : {
+    sameSite: 'strict',
+    maxAge: 24 * 60 * 60 * 1000 // 24 hours
+  }
+};
 
 if (process.env.NODE_ENV === 'production') {
   app.set('trust proxy', 1); // trust first proxy
@@ -49,7 +60,12 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 app.use(session(sessionConfig));
-
+/**
+ * ROUTES
+ */
+app.use('/images', express.static(path.join(__dirname, 'images')));
+app.use('/api/sauces', sauceRoutes);
 app.use('/api/auth', userRoutes);
+
 
 module.exports = app;

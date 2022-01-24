@@ -1,0 +1,48 @@
+<nav>
+  <div class="left-nav">
+    <ul>
+      <li>
+        <a routerLink="sauces" routerLinkActive="active" *ngIf="isAuth">
+          All sauce
+        </a>
+      </li>
+      <li>
+        <a routerLink="new-sauce" routerLinkActive="active" *ngIf="isAuth">
+          Add sauce
+        </a>
+      </li>
+    </ul>
+  </div>
+  <div class="logo">
+    <div class="logo-image">
+      <img src="../../assets/images/flame.png">
+    </div>
+    <div class="logo-text">
+      <h1>
+        HOT TAKES
+      </h1>
+      <h5>
+        THE WEB'S BEST HOT SAUCE REVIEWS 
+      </h5>
+    </div>
+  </div>
+  <div class="right-nav">
+    <ul>
+      <li>
+        <a routerLink="signup" routerLinkActive="active" *ngIf="!isAuth">
+          SIGN UP 
+        </a>
+      </li>
+      <li>
+        <a routerLink="login" routerLinkActive="active" *ngIf="!isAuth">
+          LOGIN 
+        </a>
+      </li>
+      <li>
+        <a (click)="onLogout()" *ngIf="isAuth">
+          DISCONNECT
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>
