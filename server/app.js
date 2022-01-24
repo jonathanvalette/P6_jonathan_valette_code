@@ -50,5 +50,6 @@ if (process.env.NODE_ENV === 'production') {
 
 app.use(session(sessionConfig));
 
+app.use('/api/auth', userRoutes);
 
 module.exports = app;
