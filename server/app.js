@@ -17,8 +17,8 @@ mongoose.connect(process.env.MONGODB_PATH,
     useUnifiedTopology: true })
   .then(() => console.log('Connexion à MongoDB réussie !'))
   .catch(error => handleError(error));
-  mongoose.connection.on('error', err => {
-    logError(err);
+  mongoose.connection.on('error', error => {
+    logError(error);
   });
 
 // Lancement de Express
@@ -49,7 +49,7 @@ const sessionConfig = {
   saveUninitialized: false,
   cookie : {
     sameSite: 'strict',
-    maxAge: 600 // 10 minute
+    maxAge: 1800 // 30 minute
   }
 };
 

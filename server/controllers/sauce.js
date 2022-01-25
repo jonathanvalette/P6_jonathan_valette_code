@@ -21,13 +21,12 @@ exports.getOneSauce = (req, res, next) => {
 
 /**
  * CRÉER UNE SAUCE
- * verifier l'utilité de ... pour class ou objet
  */
 exports.createSauce = (req, res, next) => {
     const sauceObject = JSON.parse(req.body.sauce);
     delete sauceObject._id;
     const sauce = new Sauce({
-        ... sauceObject,
+        ...sauceObject,
         imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`,
         likes: 0,
         dislikes: 0

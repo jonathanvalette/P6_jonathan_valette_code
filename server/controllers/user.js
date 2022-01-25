@@ -9,9 +9,8 @@ exports.signup = (req, res, next) => {
     bcrypt.hash(req.body.password, 10)
         .then(hash => {
             const user = new User({
-                email: cryptojs.HmacSHA256(req.body.email, process.env.EMAIL_KEY).toString(), // cryptage de l'email, méthode 'HmacSHA256' 
+                email: cryptojs.HmacSHA256(req.body.email, process.env.EMAIL_KEY).toString(), // cryptage de l'email, méthode 'HmacSHA256' SANS salage (pour pouvoir ensuite rechercher l'utilisateur simplement lors du login)
                 password: hash
-      
             });
             user.save()
                 .then(() => res.status(201).json({ message: 'Utilisateur créé'}))
@@ -40,7 +39,7 @@ exports.login = (req, res, next) => {
                     req.session.token = newToken; // envoi du token en session = création du cookie
                     res.status(200).json({
                         userId: user._id,
-                        token: newToken  // le front attend aussi un token en json
+                        token: newToken  // le front attend aussi un token en json, donc obligé de laisser ça
                     })
                 })
         })
