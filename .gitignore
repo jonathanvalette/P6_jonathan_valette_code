@@ -1,3 +1,6 @@
 palndetest2.ods
 PDT.pdf
-.gitignore
+client/node_modules
+server/.env
+server/access.log
+server/node_modules
