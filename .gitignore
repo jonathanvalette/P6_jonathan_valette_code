@@ -1,7 +1,7 @@
 tableau
 PDT.pdf
-client/node_modules
-server/.env
-server/access.log
-server/node_modules
+./client/node_modules
+./server/.env
+./server/access.log
+./server/node_modules
 .gitignore
