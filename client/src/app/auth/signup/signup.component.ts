@@ -41,14 +41,14 @@ export class SignupComponent implements OnInit {
           (error) => {
             this.loading = false;
             console.error(error);
-            this.errorMsg = error.message;
+            this.errorMsg = 'Une erreur est produite recommencer';
           }
         );
       }
     ).catch((error) => {
         this.loading = false;
         console.error(error);
-        this.errorMsg = error.message;
+        this.errorMsg = 'Une erreur est produite recommencer';
     });
   }
 

@@ -1,5 +1,5 @@
 <mat-spinner *ngIf="loading"></mat-spinner>
-<p class="no-sauce" *ngIf="!loading && sauces.length <= 0">
+<p *ngIf="!loading && sauces.length <= 0">
   No sauces to display!
 </p>
 <p class="list-title" *ngIf="!loading && sauces.length > 0">THE SAUCES</p>
