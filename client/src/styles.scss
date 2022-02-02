@@ -12,3 +12,7 @@ html, body { height: 100%; }
 mat-spinner {
   margin: auto;
 }
+
+mat-raised-button mat-primary {
+  text-align: center;
+}

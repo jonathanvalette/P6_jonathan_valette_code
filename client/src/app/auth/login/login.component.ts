@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
     ).catch(
       (error) => {
         this.loading = false;
-        this.errorMsg = 'Une erreur est produite recommencer';
+        this.errorMsg = error.message;
       }
     );
   }

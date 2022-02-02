@@ -16,10 +16,7 @@ mongoose.connect(process.env.MONGODB_PATH,
   { useNewUrlParser: true,
     useUnifiedTopology: true })
   .then(() => console.log('Connexion à MongoDB réussie !'))
-  .catch(error => handleError(error));
-  mongoose.connection.on('error', error => {
-    logError(error);
-  });
+  .catch(() => console.log('Connexion à MongoDB échouée !'));
 
 // Lancement de Express
 const app = express();
@@ -42,6 +39,7 @@ const accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'),
 app.use(morgan('combined', { stream: accessLogStream }));
 // Sécurise les headers
 app.use(helmet());
+
 // // Utilisation de la session pour stocker de manière persistante le JWT coté front
 const sessionConfig = {
   secret: process.env.COOKIE_KEY,
@@ -49,7 +47,7 @@ const sessionConfig = {
   saveUninitialized: false,
   cookie : {
     sameSite: 'strict',
-    maxAge: 1800 // 30 minute
+    maxAge: 180000 // 30 minute
   }
 };
 
@@ -64,12 +62,12 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 app.use(session(sessionConfig));
+
 /**
  * ROUTES
  */
 app.use('/images', express.static(path.join(__dirname, 'images')));
 app.use('/api/sauces', sauceRoutes);
 app.use('/api/auth', userRoutes);
-
 
 module.exports = app;
