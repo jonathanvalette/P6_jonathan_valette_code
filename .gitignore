@@ -1,4 +1,5 @@
 client/node_modules
+server/images
 server/.env
 server/access.log
 server/node_modules
