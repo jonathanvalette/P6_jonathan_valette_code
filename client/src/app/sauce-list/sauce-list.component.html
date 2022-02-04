@@ -7,6 +7,8 @@
   <div class="sauce-list-item" *ngFor="let sauce of sauces" (click)="onClickSauce(sauce._id)">
     <img [src]="sauce.imageUrl">
     <h4>{{ sauce.name | uppercase }}</h4>
-    <p>Heat: {{ sauce.heat }}/10</p>
+    <p>Heat: {{ sauce.heat }}</p>
+    <p>Like: {{ sauce.likes }}</p>
+    <p>Dislike: {{ sauce.dislikes }}</p>
   </div>
 </div>

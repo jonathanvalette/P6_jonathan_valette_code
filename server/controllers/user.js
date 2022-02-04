@@ -34,14 +34,16 @@ exports.login = (req, res, next) => {
                     const newToken = jsonwebtoken.sign(
                         { userId: user._id },
                         process.env.TOKEN_KEY,
-                        { expiresIn: '24h' }
+                        { expiresIn: '1h' }
                     );
                     req.session.token = newToken; // envoi du token en session = création du cookie
                     res.status(200).json({
                         userId: user._id,
-                        token: newToken  // le front attend aussi un token en json, donc obligé de laisser ça
+                        token: newToken  // le front attend aussi un token en json
                     })
+          
                 })
+             
         })
         .catch(error => res.status(500).json({ error }));
 };

@@ -47,7 +47,6 @@ const sessionConfig = {
   saveUninitialized: false,
   cookie : {
     sameSite: 'strict',
-    maxAge: 180000 // 30 minute
   }
 };
 
