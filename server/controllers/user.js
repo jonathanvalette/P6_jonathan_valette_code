@@ -29,7 +29,7 @@ exports.login = (req, res, next) => {
             bcrypt.compare(req.body.password, user.password)
                 .then(valid => {
                     if (!valid) {
-                        return res.status(401).json({ error: 'Mot de passe incorrect!' })
+                        return res.status(401).json({ error: 'Mot de passe incorrect' })
                     }
                     const newToken = jsonwebtoken.sign(
                         { userId: user._id },
@@ -41,9 +41,9 @@ exports.login = (req, res, next) => {
                         userId: user._id,
                         token: newToken  // le front attend aussi un token en json
                     })
-          
                 })
              
         })
+     
         .catch(error => res.status(500).json({ error }));
 };
